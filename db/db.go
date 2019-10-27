@@ -3,7 +3,6 @@ package db
 import (
 	"database/sql"
 	"log"
-	"os"
 	"strconv"
 	"strings"
 
@@ -13,18 +12,18 @@ import (
 var database *sql.DB = nil
 
 //Init this function opens a postgresql database
-func Init() {
+func Init(dataSource string) {
 	var err error
-	database, err = sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	database, err = sql.Open("postgres", dataSource)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 //GetDB get *sql.DB. if the variable databse is nil, then it calls Init()
-func GetDB() *sql.DB {
+func GetDB(dataSource string) *sql.DB {
 	if database == nil {
-		Init()
+		Init(dataSource)
 	}
 	return database
 }
