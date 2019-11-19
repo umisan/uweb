@@ -35,6 +35,7 @@ func Close() {
 		if err != nil {
 			log.Fatal(err)
 		}
+		database = nil
 	}
 }
 
