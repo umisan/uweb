@@ -13,8 +13,8 @@ func initValidater(){
 	}
 }
 
-//Unmarshal this function constructs a struct and validates it.
-func Unmarshal(blob []byte, s interface{}) error {
+//UnmarshalAndValidate this function constructs a struct and validates it.
+func UnmarshalAndValidate(blob []byte, s interface{}) error {
 	err := json.Unmarshal(blob, &s)
 	if err != nil {
 		return err

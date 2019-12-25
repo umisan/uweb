@@ -25,7 +25,7 @@ func TestUnmarshal(t *testing.T) {
 	for i, v := range files {
 		blob, _ := ioutil.ReadFile(v)
 		var temp a
-		err := Unmarshal(blob, &temp)
+		err := UnmarshalAndValidate(blob, &temp)
 		if (err != nil) != wants[i] {
 			t.Errorf("the expected value is %t, but got %t at %d", wants[i], err != nil , i)
 		}
