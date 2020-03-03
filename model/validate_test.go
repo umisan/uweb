@@ -1,13 +1,13 @@
 package model
 
 import (
-	"testing"
 	"io/ioutil"
+	"testing"
 )
 
 func TestUnmarshal(t *testing.T) {
 	type a struct {
-		Name string `validate:"required"`
+		Name  string `validate:"required"`
 		Email string `validate:"required,email"`
 	}
 	files := []string{
@@ -15,7 +15,7 @@ func TestUnmarshal(t *testing.T) {
 		"./testdata/2.json",
 		"./testdata/3.json",
 		"./testdata/4.json",
-	}	
+	}
 	wants := []bool{
 		false,
 		true,
@@ -27,7 +27,7 @@ func TestUnmarshal(t *testing.T) {
 		var temp a
 		err := UnmarshalAndValidate(blob, &temp)
 		if (err != nil) != wants[i] {
-			t.Errorf("the expected value is %t, but got %t at %d", wants[i], err != nil , i)
+			t.Errorf("the expected value is %t, but got %t at %d", wants[i], err != nil, i)
 		}
 	}
 }
