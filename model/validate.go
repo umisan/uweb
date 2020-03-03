@@ -2,26 +2,25 @@ package model
 
 import (
 	"encoding/json"
-
-	"gopkg.in/go-playground/validator.v10"
 )
 
-var validate *validator.Validate
+type ValidateError struct{}
 
-func initValidater() {
-	if validate == nil {
-		validate = validator.New()
-	}
+func (v ValidateError) Error() string {
+	return "バリデーションに失敗しました。"
+}
+
+type Validatable interface {
+	Validate() error
 }
 
 //UnmarshalAndValidate this function constructs a struct and validates it.
-func UnmarshalAndValidate(blob []byte, s interface{}) error {
+func UnmarshalAndValidate(blob []byte, s Validatable) error {
 	err := json.Unmarshal(blob, &s)
 	if err != nil {
 		return err
 	}
-	initValidater()
-	err = validate.Struct(s)
+	err = s.Validate()
 	if err != nil {
 		return err
 	}
