@@ -1,13 +1,14 @@
 package model
 
-import(
- "gopkg.in/go-playground/validator.v10"
- "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-playground/validator/v10"
 )
 
 var validate *validator.Validate
 
-func initValidater(){
+func initValidater() {
 	if validate == nil {
 		validate = validator.New()
 	}
@@ -23,7 +24,6 @@ func UnmarshalAndValidate(blob []byte, s interface{}) error {
 	err = validate.Struct(s)
 	if err != nil {
 		return err
-	}	
+	}
 	return err
 }
-
