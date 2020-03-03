@@ -3,7 +3,7 @@ package model
 import (
 	"encoding/json"
 
-	"github.com/go-playground/validator/v10"
+	"gopkg.in/go-playground/validator.v10"
 )
 
 var validate *validator.Validate
