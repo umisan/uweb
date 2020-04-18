@@ -20,10 +20,10 @@ func Init(dataSource string) {
 	}
 }
 
-//GetDB get *sql.DB. if the variable databse is nil, then it calls Init()
-func GetDB(dataSource string) *sql.DB {
+//GetDB get *sql.DB.
+func GetDB() *sql.DB {
 	if database == nil {
-		Init(dataSource)
+		return nil
 	}
 	return database
 }
