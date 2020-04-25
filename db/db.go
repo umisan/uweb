@@ -72,3 +72,16 @@ func GenerateSQLForMultiRows(datas []Model) ([]interface{}, string) {
 	sqlStr = strings.TrimSuffix(sqlStr, ",")
 	return vals, sqlStr
 }
+
+//SafeQuery
+//コネクションリークを起こさない関数
+/*
+引数
+query string 実行するSQL文
+args []interface{} queryに展開する引数
+返り値
+[][]interface{} クエリーの実行結果
+error
+*/
+func SafeQuery(query string, args []interface{}) ([][]interface{}, error) {
+}
